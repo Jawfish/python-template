@@ -1,0 +1,31 @@
+{
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"charliermarsh.ruff",
+				"tamasfe.even-better-toml"
+			],
+			"settings": {
+				"python.defaultInterpreterPath": "./.venv/bin/python",
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "charliermarsh.ruff"
+			}
+		}
+	},
+	"dockerComposeFile": "docker-compose.yml",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/poetry:2": {},
+		"ghcr.io/devcontainers-contrib/features/ruff:1": {},
+		"ghcr.io/devcontainers/features/python:1": {},
+		"ghcr.io/itsmechlark/features/postgresql:1": {}
+	},
+	"forwardPorts": [
+		8000
+	],
+	"name": "Python",
+	"postCreateCommand": "poetry install",
+	"service": "app",
+	"workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
+}

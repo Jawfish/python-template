@@ -1,0 +1,114 @@
+[tool.poetry]
+name = "python-template"
+version = "0.1.0"
+description = "test"
+authors = ["James Fitzgerald <james@jawfish.dev>"]
+license = "MIT"
+readme = "README.md"
+packages = [{ include = "app" }]
+
+
+[tool.poetry.scripts]
+app = "app.main:main"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+uvicorn = "^0.25.0"
+sqlalchemy = {extras = ["asyncio"], version = "^2.0.24"}
+asyncpg = "^0.29.0"
+alembic = "^1.13.1"
+attrs = "^23.2.0"
+cattrs = "^23.2.3"
+litestar = {extras = ["standard"], version = "^2.4.5"}
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "*"
+pytest-asyncio = "*"
+ruff = "^0.1.9"
+nox = "^2023.4.22"
+pyright = "^1.1.344"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.pyright]
+strict = ["app"]
+exclude = ["**/__pycache__"]
+pythonVersion = "3.12"
+pythonPlatform = "Linux"
+deprecateTypingAliases = true
+
+
+
+[tool.ruff]
+line-length = 88
+# https://docs.astral.sh/ruff/rules/
+select = [
+    "A",   # builtins
+    "ANN", # annotations
+    "ARG", # unused arguments
+    "B",   # bugbear
+    "BLE", # blind-except
+    "C4",  # comprehensions
+    "C90", # mccabe
+    "COM", # commas
+    "D",   # pydocsyle
+    "DTZ", # datetimez
+    "E",   # pycodestyle errors
+    "EM",  # errmsg
+    "F",   # pyflakes
+    "FBT", # boolean traps
+    "G",   # logging: https://google.github.io/styleguide/pyguide.html#3101-logging
+    "I",   # isort
+    "ICN", # import conventions
+    "INP", # no namespace packages
+    "ISC", # string concatenation
+    "N",   # naming
+    "PGH", # pygrep
+    "PIE", # misc errors
+    "PL",  # pylint
+    "PYI", # pyi
+    "RET", # return
+    "RSE", # raise
+    "RUF", # ruff
+    "S",   # bandit
+    "SIM", # simplify
+    "T20", # print (prefer logging)
+    "TID", # tidy imports
+    "TCH", # type-checking
+    "TRY", # tryceratops
+    "UP",  # pyupgrade
+    "W",   # pycodestyle warnings
+]
+extend-exclude = ["*_test.py", "noxfile.py", "__init__.py"]
+ignore = [
+    "ANN101", # don't require type annotations for self
+    "ANN102", # don't require type annotations for cls
+    "B008",   # let FastAPI use functions as default arguments
+    # code should be self-documenting, so docstrings should not be forced
+    "D100", # don't require module-level docstrings
+    "D101", # don't require class-level docstrings
+    "D106", # don't require docstrings for nested classes
+    "D102", # don't require method-level docstrings
+    "D103", # don't require function-level docstrings
+    "D105", # don't require docstrings for magic methods
+    "D107", # don't require docstrings for __init__ methods
+    "S101", # allow use of assert (for pytest),
+    "PGH003", # allow use of type: ignore to pacify pyright/pylance
+]
+unfixable = [
+    "ERA", # don't auto-remove commented-out code
+]
+
+
+[tool.ruff.format]
+quote-style = "single"
+docstring-code-format = true
+
+
+[tool.ruff.pydocstyle]
+convention = "google"
