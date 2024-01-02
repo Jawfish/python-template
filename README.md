@@ -38,7 +38,7 @@ If you would like to learn more about designing and structuring Litestar/FastAPI
     poetry run app
     ```
 
-    This will start the application on port 8000. VSCode's integrated devcontainer functionally should forward this port for host access. Head to http://localhost:8000/docs to see the API documentation for the example application.
+    This will start the application on port 8000. VSCode's integrated devcontainer functionally should forward this port for host access. Head to http://localhost:8000/schema/swagger to see the API documentation for the example application.
 
 ## Configuration
 
